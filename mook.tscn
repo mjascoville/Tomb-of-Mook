@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://bx58d0xg74p6s"]
+
+[ext_resource type="Script" uid="uid://cuhqqva0is4h2" path="res://mook.gd" id="1_knvuk"]
+[ext_resource type="Texture2D" uid="uid://c11wg1x45qhrg" path="res://Mook_Animated.png" id="2_jugd5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2y7u"]
+size = Vector2(7, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b6fy"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4phh"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oals8"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moaom"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knvuk"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jugd5"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2y7u"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oals8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b6fy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4phh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oals8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moaom")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knvuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jugd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2y7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jugd5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Mook" type="CharacterBody2D"]
+script = ExtResource("1_knvuk")
+SPEED = 55
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_c2y7u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oals8")
+animation = &"jump"
+autoplay = "idle"
+frame = 1
+frame_progress = 1.0

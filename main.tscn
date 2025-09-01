@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://coatgisx5258y"]
+
+[ext_resource type="PackedScene" uid="uid://bx58d0xg74p6s" path="res://mook.tscn" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://c22ywob503qml" path="res://icon.svg" id="2_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(285, 68)
+
+[node name="Main" type="Node2D"]
+
+[node name="Mook" parent="." instance=ExtResource("1_0xm2m")]
+position = Vector2(165, 75)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(27, 153)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(132.5, 24)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(133, 25)
+scale = Vector2(2.21875, 0.5625)
+texture = ExtResource("2_h2yge")
