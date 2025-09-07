@@ -1,10 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx58d0xg74p6s"]
+[gd_scene load_steps=13 format=3 uid="uid://bx58d0xg74p6s"]
 
 [ext_resource type="Script" uid="uid://cuhqqva0is4h2" path="res://mook.gd" id="1_knvuk"]
 [ext_resource type="Texture2D" uid="uid://c11wg1x45qhrg" path="res://Mook_Animated.png" id="2_jugd5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2y7u"]
-size = Vector2(7, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b6fy"]
 atlas = ExtResource("2_jugd5")
@@ -76,13 +73,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2y7u"]
+size = Vector2(7, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knvuk"]
+size = Vector2(8, 16)
+
 [node name="Mook" type="CharacterBody2D"]
 script = ExtResource("1_knvuk")
-SPEED = 55
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
-shape = SubResource("RectangleShape2D_c2y7u")
+LOCK_JUMP_DIRECTION = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oals8")
@@ -90,3 +89,17 @@ animation = &"jump"
 autoplay = "idle"
 frame = 1
 frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_c2y7u")
+
+[node name="RopeCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeCollider"]
+shape = SubResource("RectangleShape2D_knvuk")
+
+[connection signal="body_entered" from="RopeCollider" to="." method="_on_rope_collider_body_entered"]
+[connection signal="body_exited" from="RopeCollider" to="." method="_on_rope_collider_body_exited"]
