@@ -1,7 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bx58d0xg74p6s"]
+[gd_scene load_steps=15 format=3 uid="uid://bx58d0xg74p6s"]
 
 [ext_resource type="Script" uid="uid://cuhqqva0is4h2" path="res://mook.gd" id="1_knvuk"]
 [ext_resource type="Texture2D" uid="uid://c11wg1x45qhrg" path="res://Mook_Animated.png" id="2_jugd5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7raw"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1tci"]
+atlas = ExtResource("2_jugd5")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b6fy"]
 atlas = ExtResource("2_jugd5")
@@ -35,6 +43,22 @@ region = Rect2(0, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m7raw")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1tci")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7b6fy")
 }, {
 "duration": 1.0,
@@ -53,7 +77,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -85,10 +109,8 @@ LOCK_JUMP_DIRECTION = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oals8")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
-frame = 1
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)
@@ -96,7 +118,7 @@ shape = SubResource("RectangleShape2D_c2y7u")
 
 [node name="RopeCollider" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 64
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RopeCollider"]
 shape = SubResource("RectangleShape2D_knvuk")
