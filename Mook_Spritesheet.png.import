@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c11wg1x45qhrg"
-path="res://.godot/imported/Mook_Animated.png-3f4ce943e243bbc0ddb9c4e2d0aea02c.ctex"
+uid="uid://b6xgvad44g1c8"
+path="res://.godot/imported/Mook_Spritesheet.png-09bcae7e32c52703a0e3b746e4581321.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mook_Animated.png"
-dest_files=["res://.godot/imported/Mook_Animated.png-3f4ce943e243bbc0ddb9c4e2d0aea02c.ctex"]
+source_file="res://Mook_Spritesheet.png"
+dest_files=["res://.godot/imported/Mook_Spritesheet.png-09bcae7e32c52703a0e3b746e4581321.ctex"]
 
 [params]
 
