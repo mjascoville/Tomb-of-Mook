@@ -44,15 +44,17 @@ func _physics_process(delta: float) -> void:
 				state = State.Air
 			elif direction:
 				velocity.x = direction * SPEED
-				$AnimatedSprite2D.animation = "walking"
+				$AnimatedSprite2D.play("walking")
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
-				$AnimatedSprite2D.animation = "idle"
+				$AnimatedSprite2D.play("idle")
 			
 			if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 				velocity.y = jump_velocity
 				state = State.Air
 				$AnimatedSprite2D.play("jump")
+			if velocity.y > 0: 
+				$AnimatedSprite23.play("fall") 
 			
 			if on_rope and (Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down")):
 				state = State.Rope
@@ -70,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			elif not is_on_floor():
 				velocity.y += descent_gravity * delta
 				velocity.y = clamp(velocity.y, jump_velocity, terminal_velocity)
-				$AnimatedSprite2D.animation = "fall"
+				$AnimatedSprite2D.play("fall")
 			elif is_on_floor():
 				state = State.Ground
 		State.Rope:

@@ -71,9 +71,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j4phh")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -93,9 +93,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m7raw")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,11 +123,14 @@ size = Vector2(8, 16)
 
 [node name="Mook" type="CharacterBody2D"]
 script = ExtResource("1_knvuk")
+SPEED = 70.0
+JUMP_HEIGHT = 25.0
+DESCENT_TIME = 0.15
 LOCK_JUMP_DIRECTION = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b7g5s")
-animation = &"climb"
+animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)
