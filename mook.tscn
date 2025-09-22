@@ -125,6 +125,7 @@ size = Vector2(8, 16)
 script = ExtResource("1_knvuk")
 SPEED = 70.0
 JUMP_HEIGHT = 25.0
+ASCENT_TIME = 0.3
 DESCENT_TIME = 0.15
 LOCK_JUMP_DIRECTION = true
 
