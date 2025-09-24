@@ -42,7 +42,7 @@ ui_cancel={
 
 [layer_names]
 
-2d_physics/layer_1="player"
+2d_physics/layer_1="wall"
 2d_physics/layer_2="rope"
 
 [rendering]
@@ -50,4 +50,5 @@ ui_cancel={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true

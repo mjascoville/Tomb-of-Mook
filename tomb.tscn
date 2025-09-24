@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=4 uid="uid://cr5lhia4vt2o3"]
+
+[ext_resource type="TileSet" uid="uid://d3js3sob7bivu" path="res://tomb.tres" id="1_xnwrd"]
+[ext_resource type="PackedScene" uid="uid://bx58d0xg74p6s" path="res://mook.tscn" id="2_51t0q"]
+
+[node name="Tomb" type="Node2D"]
+
+[node name="background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAVABUAAAACAAEAAAAWABUAAAADAAEAAAAUABQAAwAAAAAAAAAXABQAAwAAAAAAAAAcABcAAAAEAAEAAAAeABcAAAAEAAEAAAA=")
+tile_set = ExtResource("1_xnwrd")
+
+[node name="wall" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAASABgAAAAAAAEAAAATABgAAAAAAAEAAAAUABgAAAAAAAEAAAAVABgAAAAAAAIAAAAWABgAAAAAAAIAAAAXABgAAAAAAAEAAAAYABgAAAAAAAEAAAAZABgAAAAAAAEAAAAaABgAAAAAAAEAAAAbABgAAAAAAAEAAAAcABgAAAAAAAEAAAAdABgAAAAAAAEAAAAeABgAAAAAAAEAAAAVABYAAAACAAIAAAAWABYAAAADAAIAAAAUABcAAAAAAAEAAAAXABcAAAAAAAEAAAAVABcAAAAAAAIAAAAWABcAAAAAAAIAAAA=")
+tile_set = ExtResource("1_xnwrd")
+
+[node name="Mook" parent="." instance=ExtResource("2_51t0q")]
+position = Vector2(425, 375)
+LOCK_JUMP_DIRECTION = false
+
+[node name="foreground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAASABMAAAABAAAAAAASABQAAAABAAEAAAAZABMAAAABAAAAAAAZABQAAAABAAEAAAASABYAAAABAAEAAAASABcAAAABAAIAAAAZABYAAAABAAEAAAAZABcAAAABAAIAAAAZABUAAAABAAEAAAASABUAAAABAAEAAAA=")
+tile_set = ExtResource("1_xnwrd")

@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://d3js3sob7bivu"]
+
+[ext_resource type="Texture2D" uid="uid://bhkbp4maxyxpk" path="res://tomb.png" id="1_jfqof"]
+[ext_resource type="Texture2D" uid="uid://bwrvflar133di" path="res://torch.png" id="2_uwjo4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54fpj"]
+texture = ExtResource("1_jfqof")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6, 8, 6, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6, 8, 6, 8, 8, -8, 8)
+4:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6qhm"]
+texture = ExtResource("2_uwjo4")
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 0.3
+0:0/animation_frame_1/duration = 0.3
+0:0/animation_frame_2/duration = 0.3
+0:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_54fpj")
+sources/3 = SubResource("TileSetAtlasSource_j6qhm")

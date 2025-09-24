@@ -144,5 +144,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RopeCollider"]
 shape = SubResource("RectangleShape2D_knvuk")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="RopeCollider" to="." method="_on_rope_collider_body_entered"]
 [connection signal="body_exited" from="RopeCollider" to="." method="_on_rope_collider_body_exited"]
