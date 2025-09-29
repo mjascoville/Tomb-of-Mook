@@ -145,6 +145,13 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_knvuk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+editor_draw_drag_margin = true
 
 [connection signal="body_entered" from="RopeCollider" to="." method="_on_rope_collider_body_entered"]
 [connection signal="body_exited" from="RopeCollider" to="." method="_on_rope_collider_body_exited"]
