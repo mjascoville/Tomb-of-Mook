@@ -1,7 +1,23 @@
-[gd_scene load_steps=18 format=3 uid="uid://bx58d0xg74p6s"]
+[gd_scene format=3 uid="uid://bx58d0xg74p6s"]
 
 [ext_resource type="Script" uid="uid://cuhqqva0is4h2" path="res://mook.gd" id="1_knvuk"]
 [ext_resource type="Texture2D" uid="uid://b6xgvad44g1c8" path="res://Mook_Spritesheet.png" id="2_knvuk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knvuk"]
+atlas = ExtResource("2_knvuk")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7g5s"]
+atlas = ExtResource("2_knvuk")
+region = Rect2(16, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en1v0"]
+atlas = ExtResource("2_knvuk")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw8yt"]
+atlas = ExtResource("2_knvuk")
+region = Rect2(48, 48, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jugd5"]
 atlas = ExtResource("2_knvuk")
@@ -53,6 +69,28 @@ region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b7g5s"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knvuk")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b7g5s")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en1v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw8yt")
+}],
+"loop": false,
+"name": &"attack_l",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jugd5")
@@ -121,29 +159,35 @@ size = Vector2(7, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knvuk"]
 size = Vector2(8, 16)
 
-[node name="Mook" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jugd5"]
+size = Vector2(18, 10)
+
+[node name="Mook" type="CharacterBody2D" unique_id=562327149]
 script = ExtResource("1_knvuk")
 SPEED = 70.0
 ASCENT_TIME = 0.3
 DESCENT_TIME = 0.15
 LOCK_JUMP_DIRECTION = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1203438753]
+position = Vector2(-6, -10)
 sprite_frames = SubResource("SpriteFrames_b7g5s")
-animation = &"jump"
+animation = &"attack_l"
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2056420561]
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_c2y7u")
 
-[node name="RopeCollider" type="Area2D" parent="."]
+[node name="RopeCollider" type="Area2D" parent="." unique_id=297578259]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeCollider" unique_id=1425675076]
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_knvuk")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1694003329]
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 drag_horizontal_enabled = true
@@ -151,6 +195,13 @@ drag_vertical_enabled = true
 drag_left_margin = 0.1
 drag_right_margin = 0.1
 editor_draw_drag_margin = true
+
+[node name="AttackCollider" type="Area2D" parent="." unique_id=1568376450]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCollider" unique_id=1951259868]
+position = Vector2(14, -3)
+shape = SubResource("RectangleShape2D_jugd5")
+disabled = true
 
 [connection signal="body_entered" from="RopeCollider" to="." method="_on_rope_collider_body_entered"]
 [connection signal="body_exited" from="RopeCollider" to="." method="_on_rope_collider_body_exited"]

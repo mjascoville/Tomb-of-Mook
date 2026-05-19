@@ -12,6 +12,7 @@ enum State {
 	Air,
 	Rope,
 	Roll,
+	Attack,
 }
 
 var state = State.Ground
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.Ground:
-			var direction := Input.get_axis("ui_left", "ui_right")
+			var direction := Input.get_axis("left", "right")
 			#var can_move = not LOCK_JUMP_DIRECTION or is_on_floor()
 			if not is_on_floor():
 				state = State.Air
@@ -49,18 +50,22 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 				$AnimatedSprite2D.play("idle")
 			
-			if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = jump_velocity
 				state = State.Air
 				$AnimatedSprite2D.play("jump")
 			if velocity.y > 0: 
 				$AnimatedSprite23.play("fall") 
-			
-			if on_rope and (Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down")):
+				
+			if Input.is_action_just_pressed("attack"):
+					$AnimatedSprite2D.play("attack")
+					state = State.Attack
+
+			if on_rope and (Input.is_action_pressed("up") or Input.is_action_pressed("down")):
 				state = State.Rope
 		State.Air:
 			if not LOCK_JUMP_DIRECTION:
-				var direction := Input.get_axis("ui_left", "ui_right")
+				var direction := Input.get_axis("left", "right")
 				if direction:
 					velocity.x = direction * SPEED
 				else:
@@ -77,7 +82,7 @@ func _physics_process(delta: float) -> void:
 				state = State.Ground
 		State.Rope:
 			collision_mask = 0
-			if is_on_floor() and Input.is_action_pressed("ui_down"):
+			if is_on_floor() and Input.is_action_pressed("down"):
 				state = State.Ground
 				collision_mask = 1
 			elif is_on_floor() and velocity.y < 0:
@@ -89,15 +94,24 @@ func _physics_process(delta: float) -> void:
 			
 			$AnimatedSprite2D.play("climb")
 			
-			if Input.is_action_pressed("ui_up"):
+			if Input.is_action_pressed("up"):
 				velocity.y = -SPEED
-			elif Input.is_action_pressed("ui_down"):
+			elif Input.is_action_pressed("down"):
 				velocity.y = SPEED
 			else:
 				velocity.y = 0
 			
 		State.Roll:
 			pass
+		
+		State.Attack:
+			if not $AnimatedSprite2D.is_playing():
+				state = State.Ground
+				$AttackCollider/CollisionShape2D.disabled = true
+				
+			if $AnimatedSprite2D.frame == 1:
+				$AnimatedSprite2D.offset.x = -16
+			
 
 	if velocity.x > 0:
 		facing_right = true
