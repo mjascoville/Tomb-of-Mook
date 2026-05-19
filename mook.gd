@@ -76,12 +76,16 @@ func _physics_process(delta: float) -> void:
 			elif is_on_floor():
 				state = State.Ground
 		State.Rope:
+			collision_mask = 0
 			if is_on_floor() and Input.is_action_pressed("ui_down"):
 				state = State.Ground
+				collision_mask = 1
 			elif is_on_floor() and velocity.y < 0:
 				state = State.Ground
+				collision_mask = 1
 			elif not on_rope:
 				state = State.Air
+				collision_mask = 1
 			
 			$AnimatedSprite2D.play("climb")
 			
